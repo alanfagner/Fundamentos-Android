@@ -3,9 +3,17 @@ package com.example.administrador.myapplication;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.View.OnClickListener;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static android.R.*;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -14,16 +22,31 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView minhaView = (TextView) findViewById(R.id.textView);
-        minhaView.setText("Teste de texto");
 
-        Button meuButtom = (Button) findViewById(R.id.button);
-        meuButtom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Clique!!", Toast.LENGTH_LONG).show();
-            }
-        });
+        List<Client> clientList = getClients();
 
+
+
+        ListView listViewClients = (ListView) findViewById(R.id.listViewClients);
+
+        ClientListAdpater adpterClient = new ClientListAdpater(MainActivity.this,clientList);
+        listViewClients.setAdapter(adpterClient);
+    }
+
+    private List<Client>  getClients() {
+        List<Client> clientes = new ArrayList<>();
+
+        Client alan = new Client();
+        alan.setName("Alan");
+        alan.setAge(29);
+        clientes.add(alan);
+
+        Client mazao = new Client();
+        mazao.setName("mazao");
+        mazao.setAge(30);
+        clientes.add(mazao);
+        new Client();
+
+            return clientes;
     }
 }
