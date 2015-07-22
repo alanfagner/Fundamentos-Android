@@ -14,17 +14,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/age"
-        android:inputType="date"/>
+        android:inputType="number" />
     <EditText
         android:id="@+id/editTextTel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/phone"
-        android:inputType="phone"/>
-    <ListView
-        android:id="@+id/listClient"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:headerDividersEnabled="true">
-    </ListView>
+        android:inputType="number" />
 </LinearLayout>

@@ -7,25 +7,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import com.example.administrador.myapplication.model.entities.Client;
 import com.example.administrador.myapplication.R;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import com.example.administrador.myapplication.model.persistence.MemoryClientRepository;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ListView listViewClients;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<Client> clientList = getClients();
-        ListView listViewClients = (ListView) findViewById(R.id.listViewClients);
+        listViewClients = (ListView) findViewById(R.id.listViewClients);
+        listViewClients.setAdapter(new ClientListAdpater(MainActivity.this, MemoryClientRepository.getInstace().getAll()));
+    }
 
-        ClientListAdpater adpterClient = new ClientListAdpater(MainActivity.this,clientList);
-        listViewClients.setAdapter(adpterClient);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        listViewClients.getAdapter().getCount();
     }
 
     @Override
@@ -44,20 +44,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    private List<Client>  getClients() {
-        List<Client> clientes = new ArrayList<>();
-
-        Client alan = new Client();
-        alan.setName("Alan");
-        alan.setAge(29);
-        clientes.add(alan);
-
-        Client mazao = new Client();
-        mazao.setName("mazao");
-        mazao.setAge(30);
-        clientes.add(mazao);
-        new Client();
-
-            return clientes;
-    }
 }

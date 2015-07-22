@@ -10,4 +10,5 @@
     <string name="save">Salvar</string>
     <string name="saveClient">Salvo com sucesso.</string>
     <string name="listClient">Lista de Clientes</string>
+    <string name="fieldInvalid">Campo obrigatorio.</string>
 </resources>
