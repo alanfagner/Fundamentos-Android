@@ -11,4 +11,6 @@
     <string name="saveClient">Save Sucess</string>
     <string name="listClient">List Client</string>
     <string name="fieldInvalid">Filed Required.</string>
+    <string name="menu_edit">Edit</string>
+    <string name="menu_delete">Delete</string>
 </resources>

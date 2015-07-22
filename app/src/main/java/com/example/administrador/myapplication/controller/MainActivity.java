@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         listViewClients.getAdapter().getCount();
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
