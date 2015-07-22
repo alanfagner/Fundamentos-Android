@@ -1,19 +1,17 @@
-package com.example.administrador.myapplication;
+package com.example.administrador.myapplication.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.view.View.OnClickListener;
+
+import com.example.administrador.myapplication.model.entities.Client;
+import com.example.administrador.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.R.*;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,13 +22,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         List<Client> clientList = getClients();
-
-
-
         ListView listViewClients = (ListView) findViewById(R.id.listViewClients);
 
         ClientListAdpater adpterClient = new ClientListAdpater(MainActivity.this,clientList);
         listViewClients.setAdapter(adpterClient);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.actionAdiconarSave:
+                Intent mudarDetela = new Intent(MainActivity.this, PersistClientActivity.class);
+                startActivity(mudarDetela);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        this.getMenuInflater().inflate(R.menu.menu_adicionar,menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     private List<Client>  getClients() {

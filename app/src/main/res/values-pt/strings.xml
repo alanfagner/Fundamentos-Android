@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Minha Aplicação</string>
+    <string name="action_settings">Opções</string>
+    <string name="login">Entrar</string>
+    <string name="user_name">Nome Usuário</string>
+    <string name="password">Senha</string>
+    <string name="name">Nome</string>
+    <string name="age">Idade</string>
+    <string name="phone">Telefone</string>
+    <string name="save">Salvar</string>
+    <string name="saveClient">Salvo com sucesso.</string>
+    <string name="listClient">Lista de Clientes</string>
+</resources>
