@@ -14,12 +14,12 @@ import java.util.List;
 /**
  * Created by Administrador on 20/07/2015.
  */
-public class ClientListAdpater extends BaseAdapter {
+public class ClientListAdapter extends BaseAdapter {
 
     private List<Client> clientList;
     Activity context;
 
-    public ClientListAdpater(Activity context, List<Client> clientList) {
+    public ClientListAdapter(Activity context, List<Client> clientList) {
         this.clientList = clientList;
         this.context = context;
     }

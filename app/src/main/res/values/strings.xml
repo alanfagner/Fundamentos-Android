@@ -13,4 +13,5 @@
     <string name="fieldInvalid">Filed Required.</string>
     <string name="menu_edit">Edit</string>
     <string name="menu_delete">Delete</string>
+    <string name="msg_delete_client">Delete Sucess!</string>
 </resources>

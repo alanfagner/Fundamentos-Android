@@ -13,4 +13,5 @@
     <string name="fieldInvalid">Campo obrigatorio.</string>
     <string name="menu_edit">Editar</string>
     <string name="menu_delete">Excluir</string>
+    <string name="msg_delete_client">Deletado com Sucesso!</string>
 </resources>

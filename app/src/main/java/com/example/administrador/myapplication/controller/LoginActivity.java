@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mudarDetela = new Intent(LoginActivity.this, MainActivity.class);
+                Intent mudarDetela = new Intent(LoginActivity.this, ClientListActivity.class);
                 startActivity(mudarDetela);
             }
         });

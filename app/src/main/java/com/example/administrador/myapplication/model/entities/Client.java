@@ -1,13 +1,22 @@
 package com.example.administrador.myapplication.model.entities;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.example.administrador.myapplication.model.persistence.MemoryClientRepository;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrador on 20/07/2015.
  */
-public class Client {
+public class Client implements  Parcelable{
+
+    public Client(){
+        super();
+    }
+
     private String name;
     private Integer age;
     private String phone;
@@ -64,4 +73,44 @@ public class Client {
     public static List<Client>  listaClientes(){
         return MemoryClientRepository.getInstace().getAll();
     }
+
+    public void delete(){
+        MemoryClientRepository.getInstace().delete(this);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name == null ? "" : name);
+        dest.writeInt(age == null ? -1: age);
+        dest.writeString(phone == null ? "" : phone);
+    }
+
+    public Client(Parcel in){
+        super();
+        readToParcel(in);
+    }
+
+    private void readToParcel(Parcel in) {
+
+        name  = in.readString();
+        int partialAge = in.readInt();
+        age = partialAge == -1 ? null : partialAge;
+        phone = in.readString();
+    }
+
+    public static final Parcelable.Creator<Client> CREATOR = new
+            Parcelable.Creator<Client>() {
+                public Client createFromParcel(Parcel in) {
+                    return new Client(in);
+                }
+                public Client[] newArray(int size) {
+                    return new Client[size];
+                }
+            };
+
 }
