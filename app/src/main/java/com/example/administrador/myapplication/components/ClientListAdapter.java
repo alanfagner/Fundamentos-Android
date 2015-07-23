@@ -1,4 +1,4 @@
-package com.example.administrador.myapplication.componentes;
+package com.example.administrador.myapplication.components;
 
 import android.app.Activity;
 import android.view.View;

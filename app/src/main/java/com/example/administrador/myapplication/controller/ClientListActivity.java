@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.administrador.myapplication.R;
-import com.example.administrador.myapplication.componentes.ClientListAdapter;
+import com.example.administrador.myapplication.components.ClientListAdapter;
 import com.example.administrador.myapplication.model.entities.Client;
 import com.example.administrador.myapplication.model.persistence.MemoryClientRepository;
 
