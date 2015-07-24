@@ -14,4 +14,8 @@
     <string name="menu_edit">Edit</string>
     <string name="menu_delete">Delete</string>
     <string name="msg_delete_client">Delete Sucess!</string>
+    <string name="msg_valid_delete">Would you like to delete?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="confirm">Confirm</string>
 </resources>

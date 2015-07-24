@@ -14,4 +14,8 @@
     <string name="menu_edit">Editar</string>
     <string name="menu_delete">Excluir</string>
     <string name="msg_delete_client">Deletado com Sucesso!</string>
+    <string name="msg_valid_delete">Deseja Excluir?</string>
+    <string name="yes">Sim</string>
+    <string name="no">Näo</string>
+    <string name="confirm">Confirmar</string>
 </resources>

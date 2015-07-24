@@ -1,5 +1,7 @@
 package com.example.administrador.myapplication.controller;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -16,6 +18,7 @@ import com.example.administrador.myapplication.R;
 import com.example.administrador.myapplication.components.ClientListAdapter;
 import com.example.administrador.myapplication.model.entities.Client;
 import com.example.administrador.myapplication.model.persistence.MemoryClientRepository;
+import com.example.administrador.myapplication.model.persistence.SQLiteClientRepository;
 
 public class ClientListActivity extends AppCompatActivity {
 
@@ -40,10 +43,9 @@ public class ClientListActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.actionListMenuDelete:
-                editDelClient.delete();
-                Toast.makeText(ClientListActivity.this, getString(R.string.msg_delete_client), Toast.LENGTH_SHORT).show();
-                refreshListView();
+                alertMessage();
                 break;
+
             case R.id.actionListMenuEdit:
                 Intent auxIntent = new Intent(ClientListActivity.this, PersistClientActivity.class);
                 auxIntent.putExtra(PersistClientActivity.CLIENT_PARAM, (Parcelable) editDelClient);
@@ -66,8 +68,8 @@ public class ClientListActivity extends AppCompatActivity {
         super.registerForContextMenu(listViewClients);
     }
 
-    private void refreshListView(){
-        listViewClients.setAdapter(new ClientListAdapter(ClientListActivity.this, MemoryClientRepository.getInstace().getAll()));
+    private void refreshListView() {
+        listViewClients.setAdapter(new ClientListAdapter(ClientListActivity.this, SQLiteClientRepository.getInstace().getAll()));
     }
 
     @Override
@@ -92,5 +94,25 @@ public class ClientListActivity extends AppCompatActivity {
         this.getMenuInflater().inflate(R.menu.menu_adicionar, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
+
+    public void alertMessage() {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        editDelClient.deleteBD();
+                        Toast.makeText(ClientListActivity.this, getString(R.string.msg_delete_client), Toast.LENGTH_SHORT).show();
+                        refreshListView();
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        break;
+                }
+            }
+        };
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.confirm)).setMessage(getString(R.string.msg_valid_delete)).setPositiveButton(getString(R.string.yes), dialogClickListener).setNegativeButton(getString(R.string.no), dialogClickListener).show();
+    }
+
 
 }

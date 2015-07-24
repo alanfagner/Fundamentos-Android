@@ -57,7 +57,9 @@ public class PersistClientActivity extends AppCompatActivity {
     }
 
     private void bindClient() {
-        auxClient = new Client();
+        if(auxClient == null || auxClient.getId() == null) {
+            auxClient = new Client();
+        }
         auxClient.setName(editName.getText().toString());
         auxClient.setAge(Integer.valueOf(editAge.getText().toString()));
         auxClient.setPhone(editTel.getText().toString());
@@ -69,10 +71,9 @@ public class PersistClientActivity extends AppCompatActivity {
             case R.id.actionMenuSave:
                 if (FormHelper.requiredValidateEditText(PersistClientActivity.this, editName, editAge, editTel)) {
                     bindClient();
-                    auxClient.save();
+                    auxClient.saveOrUpdateBD();
                     clearFields();
                     Toast.makeText(PersistClientActivity.this, getString(R.string.saveClient), Toast.LENGTH_SHORT).show();
-
                     Intent mudarDetela = new Intent(PersistClientActivity.this, ClientListActivity.class);
                     startActivity(mudarDetela);
                     finish();

@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.example.administrador.myapplication.model.persistence.MemoryClientRepository;
+import com.example.administrador.myapplication.model.persistence.SQLiteClientRepository;
 
 import java.io.Serializable;
 import java.util.List;
@@ -16,7 +17,7 @@ public class Client implements  Parcelable{
     public Client(){
         super();
     }
-
+    private Integer id;
     private String name;
     private Integer age;
     private String phone;
@@ -45,6 +46,14 @@ public class Client implements  Parcelable{
         this.age = age;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -52,6 +61,7 @@ public class Client implements  Parcelable{
 
         Client client = (Client) o;
 
+        if (id != null ? !id.equals(client.id) : client.id != null) return false;
         if (name != null ? !name.equals(client.name) : client.name != null) return false;
         if (age != null ? !age.equals(client.age) : client.age != null) return false;
         return !(phone != null ? !phone.equals(client.phone) : client.phone != null);
@@ -60,7 +70,8 @@ public class Client implements  Parcelable{
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (age != null ? age.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         return result;
@@ -70,12 +81,25 @@ public class Client implements  Parcelable{
         MemoryClientRepository.getInstace().saveOrUpdate(this);
     }
 
+    public void saveOrUpdateBD(){
+        SQLiteClientRepository.getInstace().saveOrUpdate(this);
+    }
+
     public static List<Client>  listaClientes(){
         return MemoryClientRepository.getInstace().getAll();
     }
 
+    public static List<Client> listaClientesBD(){
+        return SQLiteClientRepository.getInstace().getAll();
+    }
+
     public void delete(){
+
         MemoryClientRepository.getInstace().delete(this);
+    }
+
+    public void deleteBD(){
+        SQLiteClientRepository.getInstace().delete(this);
     }
 
     @Override
@@ -85,6 +109,7 @@ public class Client implements  Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id == null ? -1 : id);
         dest.writeString(name == null ? "" : name);
         dest.writeInt(age == null ? -1: age);
         dest.writeString(phone == null ? "" : phone);
@@ -96,7 +121,7 @@ public class Client implements  Parcelable{
     }
 
     private void readToParcel(Parcel in) {
-
+        id = in.readInt();
         name  = in.readString();
         int partialAge = in.readInt();
         age = partialAge == -1 ? null : partialAge;
