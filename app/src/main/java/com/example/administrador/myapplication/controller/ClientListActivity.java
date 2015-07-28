@@ -17,8 +17,7 @@ import android.widget.Toast;
 import com.example.administrador.myapplication.R;
 import com.example.administrador.myapplication.components.ClientListAdapter;
 import com.example.administrador.myapplication.model.entities.Client;
-import com.example.administrador.myapplication.model.persistence.MemoryClientRepository;
-import com.example.administrador.myapplication.model.persistence.SQLiteClientRepository;
+import com.example.administrador.myapplication.model.persistence.Client.SQLiteClientRepository;
 
 public class ClientListActivity extends AppCompatActivity {
 
@@ -49,6 +48,7 @@ public class ClientListActivity extends AppCompatActivity {
             case R.id.actionListMenuEdit:
                 Intent auxIntent = new Intent(ClientListActivity.this, PersistClientActivity.class);
                 auxIntent.putExtra(PersistClientActivity.CLIENT_PARAM, (Parcelable) editDelClient);
+                auxIntent.putExtra(PersistClientActivity.CLIENT_ADDRESS, (Parcelable) editDelClient.getEndereco());
                 startActivity(auxIntent);
                 break;
         }
@@ -69,7 +69,7 @@ public class ClientListActivity extends AppCompatActivity {
     }
 
     private void refreshListView() {
-        listViewClients.setAdapter(new ClientListAdapter(ClientListActivity.this, SQLiteClientRepository.getInstace().getAll()));
+        listViewClients.setAdapter(new ClientListAdapter(ClientListActivity.this, Client.listaClientesBD()));
     }
 
     @Override

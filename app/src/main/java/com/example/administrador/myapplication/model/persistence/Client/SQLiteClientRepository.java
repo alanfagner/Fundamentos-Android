@@ -1,9 +1,10 @@
-package com.example.administrador.myapplication.model.persistence;
+package com.example.administrador.myapplication.model.persistence.Client;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.administrador.myapplication.model.entities.Client;
+import com.example.administrador.myapplication.model.persistence.DatabaseHelper;
 import com.example.administrador.myapplication.util.AppUtil;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 /**
  * Created by Administrador on 23/07/2015.
  */
-public class SQLiteClientRepository implements  ClientRepository {
+public class SQLiteClientRepository implements ClientRepository {
 
     private static  SQLiteClientRepository singletonInstace;
 

@@ -36,9 +36,7 @@ public final class CepService {
             }
 
             final ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            CollectionType collectionType = objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, ClientAddress.class);
-            clienteAndress = objectMapper.readValue(conn.getInputStream(), collectionType);
+            clienteAndress = objectMapper.readValue(conn.getInputStream(), ClientAddress.class);
             conn.disconnect();
             return clienteAndress;
         } catch (Exception e) {

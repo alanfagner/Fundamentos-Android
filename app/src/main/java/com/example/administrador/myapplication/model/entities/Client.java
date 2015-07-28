@@ -3,24 +3,26 @@ package com.example.administrador.myapplication.model.entities;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.example.administrador.myapplication.model.persistence.MemoryClientRepository;
-import com.example.administrador.myapplication.model.persistence.SQLiteClientRepository;
+import com.example.administrador.myapplication.model.persistence.Client.MemoryClientRepository;
+import com.example.administrador.myapplication.model.persistence.Client.SQLiteClientRepository;
 
-import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.List;
 
 /**
  * Created by Administrador on 20/07/2015.
  */
-public class Client implements  Parcelable{
+public class Client implements Parcelable {
 
-    public Client(){
+    public Client() {
         super();
     }
+
     private Integer id;
     private String name;
     private Integer age;
     private String phone;
+    private ClientAddress endereco;
 
     public String getPhone() {
         return phone;
@@ -54,6 +56,14 @@ public class Client implements  Parcelable{
         this.id = id;
     }
 
+    public ClientAddress getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(ClientAddress endereco) {
+        this.endereco = endereco;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,28 +87,43 @@ public class Client implements  Parcelable{
         return result;
     }
 
-    public void save(){
+    public void save() {
         MemoryClientRepository.getInstace().saveOrUpdate(this);
     }
 
-    public void saveOrUpdateBD(){
+    public void saveOrUpdateBD() {
+        Boolean isNovo = false;
+        if(getId() == null){
+            isNovo = true;
+        }
         SQLiteClientRepository.getInstace().saveOrUpdate(this);
+        if (getEndereco() != null) {
+            getEndereco().setId(1);
+            getEndereco().saveOrUpdate(isNovo);
+        }
     }
 
-    public static List<Client>  listaClientes(){
+    public static List<Client> listaClientes() {
         return MemoryClientRepository.getInstace().getAll();
     }
 
-    public static List<Client> listaClientesBD(){
-        return SQLiteClientRepository.getInstace().getAll();
+    public static List<Client> listaClientesBD() {
+
+        List<Client> listaCliente = SQLiteClientRepository.getInstace().getAll();
+        for (Client auxClient : listaCliente) {
+            auxClient.setEndereco(ClientAddress.getByID(auxClient.getId()));
+        }
+        return listaCliente;
     }
 
-    public void delete(){
-
+    public void delete() {
         MemoryClientRepository.getInstace().delete(this);
+        if (getEndereco() != null) {
+            getEndereco().delete();
+        }
     }
 
-    public void deleteBD(){
+    public void deleteBD() {
         SQLiteClientRepository.getInstace().delete(this);
     }
 
@@ -111,18 +136,18 @@ public class Client implements  Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id == null ? -1 : id);
         dest.writeString(name == null ? "" : name);
-        dest.writeInt(age == null ? -1: age);
+        dest.writeInt(age == null ? -1 : age);
         dest.writeString(phone == null ? "" : phone);
     }
 
-    public Client(Parcel in){
+    public Client(Parcel in) {
         super();
         readToParcel(in);
     }
 
     private void readToParcel(Parcel in) {
         id = in.readInt();
-        name  = in.readString();
+        name = in.readString();
         int partialAge = in.readInt();
         age = partialAge == -1 ? null : partialAge;
         phone = in.readString();
@@ -133,6 +158,7 @@ public class Client implements  Parcelable{
                 public Client createFromParcel(Parcel in) {
                     return new Client(in);
                 }
+
                 public Client[] newArray(int size) {
                     return new Client[size];
                 }

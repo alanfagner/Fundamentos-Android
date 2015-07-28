@@ -1,24 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="16dp"
-    android:orientation="vertical">
-    <EditText
-        android:id="@+id/editTextName"
+    android:layout_height="match_parent">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/name" />
-    <EditText
-        android:id="@+id/editTextAge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/age"
-        android:inputType="number" />
-    <EditText
-        android:id="@+id/editTextTel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/phone"
-        android:inputType="number" />
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name" />
+
+        <EditText
+            android:id="@+id/editTextAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/age"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/editTextTel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/editTextCep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cep"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/editTextTypeLogra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/typeLogradouro" />
+
+        <EditText
+            android:id="@+id/editTextLogra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/logradouro" />
+
+        <EditText
+            android:id="@+id/editTextBairro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/bairro" />
+
+        <EditText
+            android:id="@+id/editTextCidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cidade" />
+
+        <EditText
+            android:id="@+id/editTextEstado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/estado" />
+
+
+    </LinearLayout>
+</ScrollView>

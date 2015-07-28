@@ -30,18 +30,10 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new GetAddressByCep().execute("14811066");
                 startActivity(new Intent(LoginActivity.this, ClientListActivity.class));
             }
         });
     }
 
-    private class GetAddressByCep extends AsyncTask<String, Void, ClientAddress>{
 
-        @Override
-        protected ClientAddress doInBackground(String... params) {
-            return CepService.getAddressBy(params[0]);
-        }
-
-    }
 }

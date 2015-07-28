@@ -18,4 +18,11 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="confirm">Confirm</string>
+    <string name="cep">Cep</string>
+    <string name="typeLogradouro">Tipo Logradouro</string>
+    <string name="logradouro">Logradouro</string>
+    <string name="bairro">Bairro</string>
+    <string name="cidade">Cidade</string>
+    <string name="estado">Estado</string>
+    <string name="msg_erro_cep">Cep não existe</string>
 </resources>

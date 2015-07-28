@@ -1,4 +1,4 @@
-package com.example.administrador.myapplication.model.persistence;
+package com.example.administrador.myapplication.model.persistence.Client;
 
 import android.content.ContentValues;
 import android.database.Cursor;
