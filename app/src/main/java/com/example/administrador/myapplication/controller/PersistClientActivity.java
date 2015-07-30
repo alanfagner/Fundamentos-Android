@@ -52,10 +52,26 @@ public class PersistClientActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_persistclient);
+        bindComponent();
+        bindOnTouchMetod();
+        bindEditClient(auxClient);
+    }
 
+    private void bindComponent(){
         editName = (EditText) findViewById(R.id.editTextName);
-
         editName.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_edittext_client, 0);
+        editAge = (EditText) findViewById(R.id.editTextAge);
+        editTel = (EditText) findViewById(R.id.editTextTel);
+        editCep = (EditText) findViewById(R.id.editTextCep);
+        editTipoLogra = (EditText) findViewById(R.id.editTextTypeLogra);
+        editLogra = (EditText) findViewById(R.id.editTextLogra);
+        editBairro = (EditText) findViewById(R.id.editTextBairro);
+        editCidade = (EditText) findViewById(R.id.editTextCidade);
+        editEstado = (EditText) findViewById(R.id.editTextEstado);
+        editCep.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_action_notification_sync, 0);
+    }
+
+    private void bindOnTouchMetod(){
         editName.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -75,33 +91,29 @@ public class PersistClientActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
-        editAge = (EditText) findViewById(R.id.editTextAge);
-        editTel = (EditText) findViewById(R.id.editTextTel);
-
-        editCep = (EditText) findViewById(R.id.editTextCep);
-        editTipoLogra = (EditText) findViewById(R.id.editTextTypeLogra);
-        editLogra = (EditText) findViewById(R.id.editTextLogra);
-
-        editBairro = (EditText) findViewById(R.id.editTextBairro);
-        editCidade = (EditText) findViewById(R.id.editTextCidade);
-        editEstado = (EditText) findViewById(R.id.editTextEstado);
-
-
-        editCep.setOnKeyListener(new View.OnKeyListener() {
+        editCep.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (editCep.getText().length() == 8) {
-                    new GetAddressByCep().execute(editCep.getText().toString());
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            public boolean onTouch(View v, MotionEvent event) {
+                final int DRAWABLE_LEFT = 0;
+                final int DRAWABLE_TOP = 1;
+                final int DRAWABLE_RIGHT = 2;
+                final int DRAWABLE_BOTTOM = 3;
+
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (editCep.getRight() - editCep.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        if (editCep.getText().length() == 8) {
+                            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                            new GetAddressByCep().execute(editCep.getText().toString());
+                        }else{
+                            Toast.makeText(PersistClientActivity.this, getString(R.string.msg_cep_valida), Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }
                 return false;
             }
         });
 
-        bindEditClient(auxClient);
     }
 
     @Override
@@ -210,7 +222,7 @@ public class PersistClientActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.actionMenuSave:
-                if (FormHelper.requiredValidateEditText(PersistClientActivity.this, editName, editAge, editTel)) {
+                if (FormHelper.requiredValidateEditText(PersistClientActivity.this, editName, editAge, editTel, editCep, editTipoLogra, editLogra, editEstado, editBairro, editCidade)) {
                     bindClient();
                     auxClient.saveOrUpdateBD();
                     Toast.makeText(PersistClientActivity.this, getString(R.string.saveClient), Toast.LENGTH_SHORT).show();

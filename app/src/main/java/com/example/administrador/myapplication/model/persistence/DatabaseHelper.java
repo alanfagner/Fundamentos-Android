@@ -5,8 +5,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.administrador.myapplication.model.entities.ClientAddress;
+import com.example.administrador.myapplication.model.entities.User;
 import com.example.administrador.myapplication.model.persistence.Client.ClientContract;
 import com.example.administrador.myapplication.model.persistence.ClientAddress.ClientAddressContract;
+import com.example.administrador.myapplication.model.persistence.User.SQLiteUser;
+import com.example.administrador.myapplication.model.persistence.User.UserContract;
 
 /**
  * Created by Administrador on 23/07/2015.
@@ -24,6 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(ClientContract.createTable());
         db.execSQL(ClientAddressContract.createTable());
+        db.execSQL(UserContract.createTable());
     }
 
     @Override

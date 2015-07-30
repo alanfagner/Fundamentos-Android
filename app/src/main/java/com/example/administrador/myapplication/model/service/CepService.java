@@ -31,14 +31,13 @@ public final class CepService {
             conn.setRequestMethod(UtilConstante.GET);
             conn.setRequestProperty(UtilConstante.ACCEPT, UtilConstante.APPJSON);
 
-            if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
-                throw new RuntimeException(UtilConstante.MSGERROR + conn.getResponseCode());
+            if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                final ObjectMapper objectMapper = new ObjectMapper();
+                clienteAndress = objectMapper.readValue(conn.getInputStream(), ClientAddress.class);
+                conn.disconnect();
+                return clienteAndress;
             }
-
-            final ObjectMapper objectMapper = new ObjectMapper();
-            clienteAndress = objectMapper.readValue(conn.getInputStream(), ClientAddress.class);
-            conn.disconnect();
-            return clienteAndress;
+            return null;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

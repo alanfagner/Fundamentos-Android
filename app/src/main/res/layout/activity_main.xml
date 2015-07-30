@@ -9,7 +9,9 @@
         android:id="@+id/listViewClients"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="false">
+        android:layout_alignParentTop="false"
+        android:divider="@drawable/list_driver"
+        android:dividerHeight="1sp">
     </ListView>
 
     <com.melnykov.fab.FloatingActionButton

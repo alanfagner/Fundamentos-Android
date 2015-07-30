@@ -25,4 +25,7 @@
     <string name="cidade">Cidade</string>
     <string name="estado">Estado</string>
     <string name="msg_erro_cep">Cep não existe</string>
+    <string name="msg_login_invalid">Usuário ou Senha Invalida.</string>
+    <string name="msg_login_sucess">Usuário Aceito.</string>
+    <string name="msg_cep_valida">Cep deve conter 8 numeros.</string>
 </resources>

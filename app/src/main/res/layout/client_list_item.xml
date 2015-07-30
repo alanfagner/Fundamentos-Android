@@ -8,11 +8,15 @@
         android:id="@+id/textViewName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="7" />
+        android:layout_weight="7"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
 
     <TextView
         android:id="@+id/textViewAge"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="3" />
+        android:layout_weight="3"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
 </LinearLayout>
