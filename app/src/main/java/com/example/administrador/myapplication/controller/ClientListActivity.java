@@ -3,6 +3,7 @@ package com.example.administrador.myapplication.controller;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
@@ -17,18 +18,26 @@ import android.widget.Toast;
 import com.example.administrador.myapplication.R;
 import com.example.administrador.myapplication.components.ClientListAdapter;
 import com.example.administrador.myapplication.model.entities.Client;
-import com.example.administrador.myapplication.model.persistence.Client.SQLiteClientRepository;
+import com.melnykov.fab.FloatingActionButton;
 
 public class ClientListActivity extends AppCompatActivity {
 
     private ListView listViewClients;
     private Client editDelClient;
+    private FloatingActionButton jogar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bindClientList();
+        jogar = (FloatingActionButton)  findViewById(R.id.btnJogar);
+        jogar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ClientListActivity.this, GameActivity.class));
+            }
+        });
     }
 
     @Override
@@ -62,6 +71,17 @@ public class ClientListActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 editDelClient = (Client) parent.getItemAtPosition(position);
                 return false;
+            }
+        });
+
+        listViewClients.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Client client = (Client) parent.getItemAtPosition(position);
+                // Best Practices: http://stackoverflow.com/questions/4275678/how-to-make-phone-call-using-intent-in-android
+                final Intent goToSOPhoneCall = new Intent(Intent.ACTION_DIAL /* or Intent.ACTION_DIAL (no manifest permission needed) */);
+                goToSOPhoneCall.setData(Uri.parse("tel:" + client.getPhone()));
+                startActivity(goToSOPhoneCall);
             }
         });
 

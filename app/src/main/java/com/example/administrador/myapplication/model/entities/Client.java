@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import com.example.administrador.myapplication.model.persistence.Client.MemoryClientRepository;
 import com.example.administrador.myapplication.model.persistence.Client.SQLiteClientRepository;
+import com.example.administrador.myapplication.model.persistence.ClientAddress.SQLiteClientAddress;
 
 import java.lang.reflect.Array;
 import java.util.List;
@@ -98,7 +99,7 @@ public class Client implements Parcelable {
         }
         SQLiteClientRepository.getInstace().saveOrUpdate(this);
         if (getEndereco() != null) {
-            getEndereco().setId(1);
+            getEndereco().setId(getId());
             getEndereco().saveOrUpdate(isNovo);
         }
     }
@@ -125,6 +126,7 @@ public class Client implements Parcelable {
 
     public void deleteBD() {
         SQLiteClientRepository.getInstace().delete(this);
+        SQLiteClientAddress.getSingletonInstace().delete(this.getEndereco());
     }
 
     @Override

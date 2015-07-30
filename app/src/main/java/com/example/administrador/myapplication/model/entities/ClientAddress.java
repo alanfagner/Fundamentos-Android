@@ -12,6 +12,9 @@ import java.util.List;
  */
 public class ClientAddress implements Parcelable {
 
+    public ClientAddress() {
+        super();
+    }
     private Integer id;
     private String cep;
     private String tipoDeLogradouro;
@@ -92,6 +95,16 @@ public class ClientAddress implements Parcelable {
         dest.writeString(estado == null ? "" : estado);
     }
 
+    private void readToParcel(Parcel in) {
+        id = in.readInt();
+        cep = in.readString();
+        tipoDeLogradouro = in.readString();
+        logradouro = in.readString();
+        bairro = in.readString();
+        cidade = in.readString();
+        estado = in.readString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -138,4 +151,22 @@ public class ClientAddress implements Parcelable {
     public void delete(){
         SQLiteClientAddress.getSingletonInstace().delete(this);
     }
+
+
+    public ClientAddress(Parcel in) {
+        super();
+        readToParcel(in);
+    }
+
+    public static final Parcelable.Creator<ClientAddress> CREATOR = new
+            Parcelable.Creator<ClientAddress>() {
+                public ClientAddress createFromParcel(Parcel in) {
+                    return new ClientAddress(in);
+                }
+
+                public ClientAddress[] newArray(int size) {
+                    return new ClientAddress[size];
+                }
+            };
+
 }

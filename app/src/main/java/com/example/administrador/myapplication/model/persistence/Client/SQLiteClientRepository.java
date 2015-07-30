@@ -2,6 +2,7 @@ package com.example.administrador.myapplication.model.persistence.Client;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.administrador.myapplication.model.entities.Client;
 import com.example.administrador.myapplication.model.persistence.DatabaseHelper;
@@ -32,7 +33,8 @@ public class SQLiteClientRepository implements ClientRepository {
         DatabaseHelper helper = new DatabaseHelper(AppUtil.CONTEXT);
         SQLiteDatabase db = helper.getWritableDatabase();
         if (client.getId() == null) {
-            db.insert(ClientContract.TABLE, null, ClientContract.getContentValues(client));
+          Long id = db.insert(ClientContract.TABLE, null, ClientContract.getContentValues(client));
+            client.setId(id.intValue());
         } else {
             String where = ClientContract.ID + " = ?";
             String[] args = {client.getId().toString()};

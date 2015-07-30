@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="16dp"
-    android:orientation="vertical">
-
-
+    >
     <ListView
         android:id="@+id/listViewClients"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="false">
     </ListView>
-</RelativeLayout>
+
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/btnJogar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:src="@drawable/ic_action_content_add_circle_outline"
+        app:fab_colorNormal="@color/material_500"
+        app:fab_colorPressed="@color/material_700" />
+</FrameLayout>
