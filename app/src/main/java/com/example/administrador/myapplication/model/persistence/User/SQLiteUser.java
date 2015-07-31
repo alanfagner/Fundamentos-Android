@@ -3,7 +3,6 @@ package com.example.administrador.myapplication.model.persistence.User;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.administrador.myapplication.model.entities.User;
-import com.example.administrador.myapplication.model.persistence.ClientAddress.ClientAddressContract;
 import com.example.administrador.myapplication.model.persistence.DatabaseHelper;
 import com.example.administrador.myapplication.util.AppUtil;
 

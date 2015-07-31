@@ -1,6 +1,5 @@
 package com.example.administrador.myapplication.model.persistence.ClientAddress;
 
-import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 

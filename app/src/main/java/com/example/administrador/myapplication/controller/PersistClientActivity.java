@@ -68,7 +68,7 @@ public class PersistClientActivity extends AppCompatActivity {
         editBairro = (EditText) findViewById(R.id.editTextBairro);
         editCidade = (EditText) findViewById(R.id.editTextCidade);
         editEstado = (EditText) findViewById(R.id.editTextEstado);
-        editCep.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_action_notification_sync, 0);
+        editCep.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_cached_black_24dp, 0);
     }
 
     private void bindOnTouchMetod(){

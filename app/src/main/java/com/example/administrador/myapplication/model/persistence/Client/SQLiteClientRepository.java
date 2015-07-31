@@ -2,7 +2,6 @@ package com.example.administrador.myapplication.model.persistence.Client;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.example.administrador.myapplication.model.entities.Client;
 import com.example.administrador.myapplication.model.persistence.DatabaseHelper;
