@@ -4,12 +4,12 @@
     tools:context=".MainActivity">
     <item
         android:id="@+id/actionListMenuEdit"
-        android:icon="@drawable/ic_action_content_add_circle_outline"
+        android:icon="@drawable/ic_group_add_black_24dp"
         android:title="@string/menu_edit"
         app:showAsAction="always" />
     <item
         android:id="@+id/actionListMenuDelete"
-        android:icon="@drawable/ic_action_content_add_circle_outline"
+        android:icon="@drawable/ic_cached_black_24dp"
         android:title="@string/menu_delete"
         app:showAsAction="always" />
 </menu>
