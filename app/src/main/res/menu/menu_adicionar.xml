@@ -4,7 +4,7 @@
     tools:context=".MainActivity">
     <item
         android:id="@+id/actionAdiconarSave"
-        android:icon="@drawable/ic_group_add_black_24dp"
+        android:icon="@drawable/ic_perm_identity_black_24dp"
         android:title="@string/save"
         app:showAsAction="always" />
 </menu>
